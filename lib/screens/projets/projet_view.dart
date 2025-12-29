@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/screens/projets/components/apprentissages.dart';
 import 'package:portfolio/models/projet.dart';
 import 'package:portfolio/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjetView extends StatelessWidget {
   final Projet projet;
 
   const ProjetView({super.key, required this.projet});
+
+  Future<void> navigateToUrl(BuildContext context, String url) async {
+    try {
+      final Uri uri = Uri.parse(url);
+      bool success = await launchUrl(uri);
+      if (!success) {
+        throw Exception('Could not launch $url');
+      }
+    } catch (e) {
+      print('Erreur : $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erreur lors du lancement de l\'URL')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +130,12 @@ class ProjetView extends StatelessWidget {
               ),
             ),
 
+            _buildSectionCard(
+              context,
+              title: "Bilan des Apprentissages",
+              content: Apprentissages(apprentissages: projet.apprentissages),
+            ),
+
             // Collaborators Section
             _buildSectionCard(
               context,
@@ -143,18 +166,38 @@ class ProjetView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton.icon(
-                      onPressed: () => _launchURL(projet.demoLink),
+                      onPressed: () {
+                        if (projet.demoLink.isNotEmpty) {
+                          navigateToUrl(context, projet.demoLink);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'Aucune démo disponible pour ce projet.')),
+                          );
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,
                       ),
                       icon: const Icon(Icons.touch_app, color: darkColor),
                       label: const Text(
-                        "Essayez-le maintenant",
+                        "Démo en ligne",
                         style: TextStyle(color: darkColor),
                       ),
                     ),
                     ElevatedButton.icon(
-                      onPressed: () => _launchURL(projet.sourceCodeLink),
+                      onPressed: () {
+                        if (projet.sourceCodeLink.isNotEmpty) {
+                          navigateToUrl(context, projet.sourceCodeLink);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'Code source non disponible pour ce projet.')),
+                          );
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,
                       ),
@@ -195,10 +238,5 @@ class ProjetView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _launchURL(String url) async {
-    // Replace this with url_launcher logic or similar package
-    print("Launching URL: $url");
   }
 }

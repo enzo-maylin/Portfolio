@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/screens/home/home_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/screens/home/home_screen.dart';
+import 'package:portfolio/screens/portfolioApprentissage/portfolio_apprentissage_screen.dart';
 
 import 'constants.dart';
 
@@ -9,14 +11,32 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  // Configuration de GoRouter
+  final GoRouter _router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => HomeScreen(),
+      ),
+      GoRoute(
+        path: '/apprentissage',
+        builder: (context, state) => PortfolioApprentissageScreen(),
+      ),
+    ],
+    errorBuilder: (context, state) => Scaffold(
+      body: Center(
+        child: Text("Page non trouvée"),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Portfolio',
-      // we are using dark theme and we modify it as our need
       theme: ThemeData.dark().copyWith(
         primaryColor: primaryColor,
         scaffoldBackgroundColor: bgColor,
@@ -28,10 +48,7 @@ class MyApp extends StatelessWidget {
               bodyMedium: TextStyle(color: bodyTextColor),
             ),
       ),
-      home: HomeScreen(),
-      routes: {
-        '/home': (context) => HomeScreen(),
-      },
+      routerConfig: _router, // Utilisation de GoRouter
     );
   }
 }

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/models/Recommendation.dart';
-import 'package:portfolio/screens/home/components/recommendation_card.dart';
+import 'package:portfolio/models/apprentissage.dart';
+import 'package:portfolio/screens/projets/components/apprentissage_card.dart';
 
 import '../../../constants.dart';
 
-class Recommendations extends StatelessWidget {
-  const Recommendations({
-    Key? key,
-  }) : super(key: key);
+class Apprentissages extends StatelessWidget {
+  const Apprentissages({
+    super.key,
+    required this.apprentissages,
+  });
+
+  final List<Apprentissage> apprentissages;
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +19,15 @@ class Recommendations extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Recommendations",
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          const SizedBox(height: defaultPadding),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(
-                demo_recommendations.length,
+                apprentissages.length,
                 (index) => Padding(
                   padding: const EdgeInsets.only(right: defaultPadding),
-                  child: RecommendationCard(
-                    recommendation: demo_recommendations[index],
+                  child: ApprentissageCard(
+                    apprentissage: apprentissages[index],
                   ),
                 ),
               ),
