@@ -53,10 +53,10 @@ class AnimatedCircularProgressIndicator extends StatelessWidget {
 
 class AnimatedLinearProgressIndicator extends StatelessWidget {
   const AnimatedLinearProgressIndicator({
-    Key? key,
+    super.key,
     required this.percentage,
     required this.label,
-  }) : super(key: key);
+  });
 
   final double percentage;
   final String label;

@@ -90,19 +90,19 @@ class AnimatedText extends StatelessWidget {
     return AnimatedTextKit(
       animatedTexts: [
         TyperAnimatedText(
-          "la création d'API RESTfull avec Symfony.",
+          "la création d'API REST.",
           speed: Duration(milliseconds: 60),
         ),
         TyperAnimatedText(
-          "la gestion de bases de données SQL.",
+          "la gestion de bdd.",
           speed: Duration(milliseconds: 60),
         ),
         TyperAnimatedText(
-          "la création d'applications multiplateformes avec Flutter.",
+          "la création d'applications.",
           speed: Duration(milliseconds: 60),
         ),
         TyperAnimatedText(
-          "les bonnes pratiques de développement.",
+          "les principes SOLID.",
           speed: Duration(milliseconds: 60),
         ),
       ],

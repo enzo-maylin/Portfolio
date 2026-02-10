@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/screens/home/home_screen.dart';
-import 'package:portfolio/screens/portfolioApprentissage/portfolio_apprentissage_screen.dart';
 
 import 'constants.dart';
 
@@ -19,10 +18,6 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (context, state) => HomeScreen(),
-      ),
-      GoRoute(
-        path: '/apprentissage',
-        builder: (context, state) => PortfolioApprentissageScreen(),
       ),
     ],
     errorBuilder: (context, state) => Scaffold(

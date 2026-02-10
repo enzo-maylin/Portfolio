@@ -7,6 +7,7 @@ class AboutMe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO : à refaire, surtout le objectif ingénieur
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -123,27 +124,16 @@ class AboutMe extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
               children: [
                 const TextSpan(
-                  text: "Actuellement en troisième année d’un ",
+                  text: "Actuellement en première année d'une ",
                 ),
                 TextSpan(
-                  text: "BUT Informatique à Montpellier",
+                  text: "formation d'ingénieur aux mines d'Alès",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 const TextSpan(
-                  text:
-                      " et alternant chez EDF au service ISI, je poursuis également une ",
-                ),
-                TextSpan(
-                  text: "Licence 3 en Management à l’IAE",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                const TextSpan(
-                  text:
-                      " dans le cadre d’une double diplomation. Mon objectif est de poursuivre mes études en école d’ingénieur en alternance.",
+                  text: " et alternant chez EDF au service ISI.",
                 ),
                 const TextSpan(
                   text:
@@ -157,7 +147,7 @@ class AboutMe extends StatelessWidget {
                 ),
                 const TextSpan(
                   text:
-                      " est de m’établir comme un ingénieur compétent et polyvalent, capable de relever des défis complexes dans le domaine du développement informatique.",
+                      " est de m'établir comme un ingénieur compétent et polyvalent, capable de relever des défis complexes dans le domaine du développement informatique.",
                 ),
               ],
             ),
